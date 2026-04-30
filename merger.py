@@ -157,7 +157,8 @@ def create_loom_video(
     # 2. Scale webcam and apply circular alpha mask
     r = circle_size / 2
     parts.append(
-        f"[1:v]scale={circle_size}:{circle_size},"
+        f"[1:v]scale={circle_size}:{circle_size}:force_original_aspect_ratio=increase,"
+        f"crop={circle_size}:{circle_size},"
         f"format=yuva420p,"
         f"geq="
         f"r='r(X,Y)':"

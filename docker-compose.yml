@@ -1,0 +1,8 @@
+services:
+  merger:
+    build: .
+    restart: unless-stopped
+    environment:
+      - API_KEY=${API_KEY}
+    ports:
+      - "127.0.0.1:8000:8000"   # bind to localhost only — nginx proxies externally

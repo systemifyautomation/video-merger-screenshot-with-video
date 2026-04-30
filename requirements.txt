@@ -1,8 +1,10 @@
-# Runtime dependencies for merger.py
+# Runtime dependencies
 # FFmpeg must be installed separately (see README.md)
 
-# No Python packages are required at runtime — merger.py relies entirely on
-# the system FFmpeg/ffprobe binaries via subprocess.
-#
-# The packages below are only needed to run the tests (tests/test_merger.py):
+# API server
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# Test suite only
 Pillow>=10.0.0  # Creates dummy screenshots in the test suite

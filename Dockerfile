@@ -13,10 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # ── Application code ──────────────────────────────────────────────────────────
 COPY merger.py .
+COPY api.py .
 
-# ── Default entrypoint ───────────────────────────────────────────────────────
-# Inputs/outputs are expected to be mounted at /data
-# Example:
-#   docker run --rm -v $(pwd):/data merger \
-#       /data/screenshot.png /data/webcam.mp4 /data/output.mp4
-ENTRYPOINT ["python", "merger.py"]
+# ── API server ───────────────────────────────────────────────────────────────
+EXPOSE 8000
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
