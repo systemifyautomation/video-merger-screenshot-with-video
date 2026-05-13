@@ -1,0 +1,23 @@
+services:
+  merger:
+    build: .
+    restart: unless-stopped
+    environment:
+      - API_KEY=${API_KEY}
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.merger.rule=Host(`upwork-video-merger.systemifyautomation.com`)
+      - traefik.http.routers.merger.tls=true
+      - traefik.http.routers.merger.entrypoints=web,websecure
+      - traefik.http.routers.merger.tls.certresolver=mytlschallenge
+      - traefik.http.services.merger.loadbalancer.server.port=8000
+      # Allow large file uploads (500 MB)
+      - traefik.http.middlewares.merger-limit.buffering.maxRequestBodyBytes=524288000
+      - traefik.http.routers.merger.middlewares=merger-limit@docker
+
+networks:
+  traefik:
+    external: true
+    name: n8n_default

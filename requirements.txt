@@ -1,0 +1,10 @@
+# Runtime dependencies
+# FFmpeg must be installed separately (see README.md)
+
+# API server
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# Test suite only
+Pillow>=10.0.0  # Creates dummy screenshots in the test suite
